@@ -14,6 +14,13 @@ def clear():
     '''Clears the calculator screen
     Delets all characters from index 0 to End'''
 
+#Backspace Function
+def backspace():
+    current = entry.get()
+    if current:
+        entry.delete(len(current)-1, tk.END)
+
+
 #Calculation Function
 def calc():
     try:
@@ -42,7 +49,7 @@ root.resizable(False, False) #Disable resizing the windows
 entry = tk.Entry(
     root,
     font=("Times new roman",20),
-    bg="black",
+    bg="#2d2d2d",
     fg="white",
     bd=0,
     justify="right"
@@ -81,7 +88,7 @@ for b in button:
         font=("Calibri", 14),
         width=5,
         height=2,
-        bg="orange" if b in "+-*/" else "#3a3a3a",
+        bg="#ff9500" if b in "+-*/" else "#3a3a3a",
         fg="white",
         bd=0
     ).grid(row=r, column=c, padx=6, pady=6)
@@ -97,14 +104,31 @@ tk.Button(
     text="Clear",
     command=clear,
     font=("Calibri", 14),
-    width=22,
+    width=15,
     height=2,
-    bg="orange",
+    bg="#ff3b3b",
     fg="white",
     bd=0
-).grid(row=r, column=0, columnspan=4, pady=4)
+).grid(row=r, column=0, columnspan=3, pady=4, padx=4)
+
 '''Clears the calculator display screen
 Spans across all columns'''
+
+#Backspace Button
+tk.Button(
+    root,
+    text="⌫",
+    command=backspace,
+    font=("Calibri", 14),
+    width=5,
+    height=2,
+    bg="#555555",
+    fg="white",
+    bd=0
+).grid(row=r, column=3, pady=4, padx=4)
+
+
+
 
 #Event Loop
 root.mainloop()
